@@ -1,13 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  basePath: '/realman',
-  trailingSlash: true,
-
   typescript: {
     ignoreBuildErrors: true,
   },
-
   images: {
     unoptimized: true,
   },
