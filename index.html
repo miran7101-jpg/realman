@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REAL MAN - Premium Massage Services</title>
+  <style>
+    /* ========================================
+       GLOBAL STYLES
+       ======================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #0f1419;
+      color: #f1f5f9;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    section {
+      display: none;
+      min-height: 100vh;
+      padding-top: 80px;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    /* ========================================
+       NAVIGATION
+       ======================================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(15, 20, 25, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #10b981;
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #10b981;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #f1f5f9;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    #mobileNav {
+      display: none;
+    }
+
+    /* ========================================
+       SLIDESHOW
+       ======================================== */
+    .hero-slideshow {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      margin-top: 0;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+      width: 100%;
+      padding: 0 2rem;
+    }
+
+    .hero-content h1 {
+      font-size: 5rem;
+      color: #ffffff;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      letter-spacing: 4px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-primary:hover {
+      background-color: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-line {
+      background-color: #06c755;
+      color: #ffffff;
+    }
+
+    .btn-line:hover {
+      background-color: #05b04a;
+      transform: translateY(-2px);
+    }
+
+    .btn-telegram {
+      background-color: #0088cc;
+      color: #ffffff;
+    }
+
+    .btn-telegram:hover {
+      background-color: #0077b3;
+      transform: translateY(-2px);
+    }
+
+    /* ========================================
+       CONTAINER
+       ======================================== */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* ========================================
+       SERVICES SECTION
+       ======================================== */
+    .services-layout {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .services-content {
+      flex: 1;
+    }
+
+    .service-item {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(203, 213, 225, 0.1);
+    }
+
+    .service-item:last-child {
+      border-bottom: none;
+    }
+
+    .service-item h2 {
+      font-size: 2rem;
+      color: #10b981;
+      margin-bottom: 1rem;
+    }
+
+    .service-item p {
+      font-size: 1.125rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    .services-image-sticky {
+      flex: 0 0 580px;
+      position: sticky;
+      top: 360px;
+    }
+
+    .services-image-sticky img {
+      width: 80%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* ========================================
+       TRAINERS SECTION
+       ======================================== */
+    .trainers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .trainer-card {
+      background: #1a1f2e;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(203, 213, 225, 0.1);
+    }
+
+    .trainer-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+      border-color: #10b981;
+    }
+
+    .trainer-image {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .trainer-info {
+      padding: 1.5rem;
+    }
+
+    .trainer-name {
+      font-size: 1.5rem;
+      color: #10b981;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(203, 213, 225, 0.1);
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    .info-value {
+      color: #f1f5f9;
+    }
+
+    /* ========================================
+       TRAINER DETAIL
+       ======================================== */
+    .trainer-detail-header {
+      margin-bottom: 2rem;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #10b981;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      transition: color 0.3s;
+    }
+
+    .back-button:hover {
+      color: #059669;
+    }
+
+    .trainer-header h1 {
+      font-size: 3rem;
+      color: #10b981;
+      margin-bottom: 1.5rem;
+    }
+
+    .trainer-description {
+      background: #1a1f2e;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(203, 213, 225, 0.1);
+    }
+
+    .trainer-description h2 {
+      font-size: 1.75rem;
+      color: #10b981;
+      margin-bottom: 1rem;
+    }
+
+    .trainer-description p {
+      font-size: 1.125rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    .trainer-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .booking-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ========================================
+       ROOMS SECTION
+       ======================================== */
+       
+    .rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.room-card {
+  background: #1a1f2e;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(203, 213, 225, 0.1);
+}
+
+.room-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+    
+
+    /* ========================================
+       LOCATION SECTION
+       ======================================== */
+    .location-content {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .location-map {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .location-map iframe {
+      width: 100%;
+      height: 450px;
+      border-radius: 12px;
+      border: 1px solid rgba(203, 213, 225, 0.1);
+    }
+
+    .location-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .info-card {
+      background: #1a1f2e;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(203, 213, 225, 0.1);
+    }
+
+    .info-card h3 {
+      font-size: 1.5rem;
+      color: #10b981;
+      margin-bottom: 1rem;
+    }
+
+    .info-card p {
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ========================================
+       RESPONSIVE DESIGN
+       ======================================== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      #mobileNav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(15, 20, 25, 0.98);
+        flex-direction: column;
+        padding: 1rem 0;
+        border-top: 1px solid rgba(59, 130, 246, 0.1);
+      }
+
+      #mobileNav.active {
+        display: flex;
+      }
+
+      #mobileNav .nav-link {
+        padding: 1rem 2rem;
+        border-bottom: 1px solid rgba(203, 213, 225, 0.1);
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+      }
+
+      .services-layout {
+        flex-direction: column;
+      }
+
+      .services-image-sticky {
+        position: static;
+        flex: 1;
+        width: 100%;
+      }
+
+      .trainer-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+  <style>
+    .room-section-title {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #10b981;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#home" class="logo">REAL MAN</a>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link">HOME</a></li>
+        <li><a href="#services" class="nav-link">SERVICES</a></li>
+        <li><a href="#trainers" class="nav-link">TRAINERS</a></li>
+        <li><a href="#rooms" class="nav-link">ROOMS</a></li>
+        <li><a href="#location" class="nav-link">LOCATION</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </div>
+    <div class="nav-links" id="mobileNav">
+      <li><a href="#home" class="nav-link">HOME</a></li>
+      <li><a href="#services" class="nav-link">SERVICES</a></li>
+      <li><a href="#trainers" class="nav-link">TRAINERS</a></li>
+      <li><a href="#rooms" class="nav-link">ROOMS</a></li>
+      <li><a href="#location" class="nav-link">LOCATION</a></li>
+    </div>
+  </nav>
+
+  <!-- ========================================
+       HOME SECTION
+       ========================================
+       IMAGE AREA START
+       To change slideshow images, replace the URLs below
+       Add or remove <div class="slide"> sections as needed
+       ======================================== -->
+  <!-- Replacing preview sections with actual full section content on home page -->
+  <section id="home" class="active">
+    <div class="hero-slideshow">
+      <!-- Updated slideshow images to match uploaded file -->
+      <div class="slide active">
+        <img src="site/줄리안 (3).jpg" alt="줄리안">
+      </div>
+      <div class="slide">
+        <img src="site/은호 (4).jpg" alt="은호">
+      </div>
+      <div class="slide">
+        <img src="site/도경 (1).jpg" alt="도경">
+      </div>
+            <div class="slide">
+        <img src="site/마크 (4).jpg" alt="마크">
+      </div>
+      <!-- IMAGE AREA END -->
+      
+      <div class="hero-content">
+        <h1>REAL MAN</h1>
+        <div class="hero-buttons">
+          <a href="#services" class="btn btn-primary">View Services</a>
+          <a href="#trainers" class="btn btn-primary">Meet Our Team</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Replacing home Our Services with actual Services section pricing content -->
+    <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin-bottom: 3rem; text-align: center;">Our Services</h2>
+      <div class="services-layout">
+        <div class="services-content">
+          <div class="service-item">
+            <h2>Prices & Courses</h2>
+            <p>
+              * 60 minutes: ₩110,000<br>
+              * 90 minutes: ₩150,000<br>
+              * 120 minutes: ₩220,000<br>
+              * Extended-night courses available based on time<br><br>
+              Outcall Fee: Round Trip Taxi Fare<br>
+              Massage + Service<br>
+              Choice of Dry or Aroma Massage (Optional)
+
+              Cash, card (plus 10% VAT), or bank transfer accepted<br><br>
+
+              Location: Near HAKDONG Station<br>
+              Outcall: Please provide your location and we'll arrange round-trip taxi fare
+            </p>
+          </div>       
+          <div class="service-item">
+            <h2>가격&코스</h2>
+            <p>
+              60분: ₩110,000<br>
+              90분: ₩150,000<br>
+              120분: ₩220,000<br>
+              *시간에 따라 야간 연장 코스 가능<br><br>
+
+              현금, 카드(부가세 10% 포함), 또는 계좌이체 가능<br>
+              위치: 학동역 근처<br>
+              출장: 고객님의 위치를 알려주시면 왕복 택시를 포함하여 출장 진행<br>
+            </p>
+          </div> 
+        </div>
+</div>
+        <!-- Updated services image path 
+        <div class="services-image-sticky">
+          <img src="site/KakaoTalk_20251126_190246556.jpg" alt="Massage Services">
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Full Trainers Section on Home - renders all trainers -->
+    <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin-bottom: 3rem; text-align: center;">Our Trainers</h2>
+      <div class="trainers-grid" id="homeTrainersGrid">
+        <!-- All trainers will be rendered here -->
+      </div>
+    </div>
+
+    <!-- Full Rooms section with 3 images from Rooms section -->
+    <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+     <h2 style="font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin-bottom: 3rem; text-align: center;">Our Facilities</h2> 
+      <div class="room-section-title">
+              </div>
+      <div class="rooms-grid">
+        <div class="room-card">
+          <img src="site/room1.jpg" alt="Private Treatment Rooms">
+        </div>
+        <div class="room-card">
+          <img src="site/room2.jpg" alt="Couples Suites">
+        </div>
+        <div class="room-card">
+          <img src="site/room3.jpg" alt="Aromatherapy Chamber">
+        </div>
+        <div class="room-card">
+          <img src="site/room4.jpg" alt="Aromatherapy Chamber">
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Location section content copied to Visit Us on home -->
+    <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin-bottom: 3rem; text-align: center;">Visit Us</h2>
+      <div class="location-content" style="display: flex; gap: 2rem; align-items: stretch;">
+        <div class="location-info" style="flex: 1; display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="info-card">
+            <h3>Location</h3>
+            <p>44‑8, Gangnam-daero 128-gil</p>
+            <p>Gangnam-gu, Seoul</p>
+            <p>Hakdong Station, Exit 5 – 3 minutes on foot</p>
+            <p>서울시 강남구 강남대로 128길 44-8</p>
+            <p>학동역 5번 출구 – 도보 3분</p>
+          </div>
+
+          <div class="info-card">
+            <h3>Hours</h3>
+            <p>Business Hours: 2:00 PM – 4:00 AM</p>
+          </div>
+
+          <div class="info-card">
+            <h3>Contact</h3>
+            <p style="margin-top: 0.75rem;">
+              <a href="https://t.me/realkoreans" target="_blank" rel="noopener noreferrer" style="color: #10b981; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.375rem; transition: all 0.3s; margin-right: 0.5rem;">
+                <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-3.146 10.843-3.146 10.843-.237.95-.87.95-1.417.588-.411-.273-2.24-1.453-2.976-1.898-.736-.445-1.382-.89-1.146-1.362.148-.295 2.24-2.598 3.652-3.988.631-.622.316-.989-.379-.367-1.743 1.556-4.596 3.592-5.156 3.965-.56.373-.875.373-1.266.248-.39-.124-1.687-.627-1.687-.627s-.622-.39.437-1.252c0 0 4.277-3.965 5.875-5.471C11.998 7.302 13.746 4.5 13.746 4.5s.316-.44.632-.294c.316.147.21.588.21.588s-.105.368-.315.735z"/>
+                </svg>
+                Telegram: @realkoreans
+              </a>
+            </p>
+            <p style="margin-top: 0.5rem;">
+              <a href="https://line.me/ti/p/U2AK4_ePYe" target="_blank" rel="noopener noreferrer" style="color: #06b6d4; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(6, 182, 212, 0.1); border-radius: 0.375rem; transition: all 0.3s;">
+                <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.629.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.348 0 .628.285.628.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                </svg>
+                LINE: @newmsg
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="location-map">
+          <iframe 
+            src="https://www.google.com/maps?q=서울시+강남구+강남대로+128길+44-8&output=embed&z=17"
+            style="width: 80%; height: 95%; min-height: 500px;"
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of home section with full content from all sections -->
+
+  <!-- Trainer Detail Section -->
+<section id="trainer-detail">
+    <div class="container">
+      <div class="trainer-detail-header">
+        <button onclick="history.back()" class="btn btn-secondary" style="margin-bottom: 2rem;">← Back to Trainers</button>
+      </div>
+      <div id="trainerDetailContent">
+        <!-- Trainer detail content will be dynamically rendered here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="container">
+      <div class="services-layout">
+        <div class="services-content">
+          <div class="service-item">
+            <h2>Prices & Courses</h2>
+            <p>
+              * 60 minutes: ₩110,000<br>
+              * 90 minutes: ₩150,000<br>
+              * 120 minutes: ₩220,000<br>
+              * Extended-night courses available based on time<br><br>
+              Outcall Fee: Round Trip Taxi Fare<br>
+              Massage + Service<br>
+              Choice of Dry or Aroma Massage (Optional)
+
+              Cash, card (plus 10% VAT), or bank transfer accepted<br><br>
+
+              Location: Near HAKDONG Station<br>
+              Outcall: Please provide your location and we'll arrange round-trip taxi fare
+            </p>
+          </div>       
+          <div class="service-item">
+            <h2>가격&코스</h2>
+            <p>
+              60분: ₩110,000<br>
+              90분: ₩150,000<br>
+              120분: ₩220,000<br>
+              *시간에 따라 야간 연장 코스 가능<br><br>
+
+              현금, 카드(부가세 10% 포함), 또는 계좌이체 가능<br>
+              위치: 학동역 근처<br>
+              출장: 고객님의 위치를 알려주시면 왕복 택시를 포함하여 출장 진행<br>
+            </p>
+          </div> 
+        </div>
+
+       <!-- CSS -->
+ <style>
+    .services-content {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 60px;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    .service-item {
+      flex: 1 1 300px;
+      padding: 0 20px;
+    }
+
+    /* 세로 점선 - 점 간격 길게 */
+    .service-item:first-child {
+      border-right: 2px dashed #ccc; /* 점 굵기 */
+      /* 점 간격 길게 조절 */
+      border-image: repeating-linear-gradient(
+        to bottom,
+        #ccc 0 4px,        /* 점 길이 */
+        transparent 4px 12px /* 점과 점 사이 간격 */
+      ) 1;
+    }
+
+    @media (max-width: 768px) {
+      .services-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      /* 모바일용 가로 점선 */
+      .service-item:first-child {
+        border-right: none;
+        border-bottom: 2px dashed #ccc;
+        /* 점 간격 길게 조절 */
+        border-image: repeating-linear-gradient(
+          to right,
+          #ccc 0 4px,        /* 점 길이 */
+          transparent 4px 12px /* 점과 점 사이 간격 */
+        ) 1;
+        padding-bottom: 20px;
+      }
+    }
+  </style>
+</section>
+
+       <!-- <div class="services-image-sticky">
+          <img src="site/KakaoTalk_20251126_190246556.jpg" alt="Massage Services">
+        </div>
+      </div>
+    </div>  -->
+
+  </section>
+
+  <!-- Trainers Section -->
+  <section id="trainers">
+    <div class="container">
+     <!-- <h2 style="font-size: 2.5rem; font-weight: 700; color: #f1f5f9; margin-bottom: 3rem; text-align: center;">Our Trainers</h2> -->
+      <div class="trainers-grid" id="trainersGrid">
+        <!-- All trainers will be rendered here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms Section -->
+  <section id="rooms">
+    <div class="container">
+    <!--  <h2 style="font-size: 2.5rem; font-weight: 700; color: #f1f5f9; margin-bottom: 3rem; text-align: center;">Our Facilities</h2> -->
+           <div class="room-section-title">
+        Our private Rooms<br><br>
+             </div>
+      <div class="rooms-grid">
+  <div class="room-card">
+    <img src="site/room1.jpg" alt="Private Treatment Rooms">
+  </div>
+  <div class="room-card">
+    <img src="site/room2.jpg" alt="Couples Suites">
+  </div>
+  <div class="room-card">
+    <img src="site/room3.jpg" alt="Aromatherapy Chamber">
+  </div>
+  <div class="room-card">
+          <img src="site/room4.jpg" alt="Aromatherapy Chamber">
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section id="location">
+    <div class="container">
+     <div class="location-content">
+        <div class="location-info">
+          <div class="info-card">
+            <h3>Location</h3>
+            <p>44‑8, Gangnam-daero 128-gil</p>
+            <p>Gangnam-gu, Seoul</p>
+            <p>Hakdong Station, Exit 5 – 3 minutes on foot</p>
+            <p>서울시 강남구 강남대로 128길 44-8</p>
+            <p>학동역 5번 출구 – 도보 3분</p>
+          </div>
+
+          <div class="info-card">
+            <h3>Hours</h3>
+            <p>Business Hours: 2:00 PM – 4:00 AM</p>
+          </div>
+
+          <div class="info-card">
+            <h3>Contact</h3>
+            <p style="margin-top: 0.75rem;">
+              <a href="https://t.me/realkoreans" target="_blank" rel="noopener noreferrer" style="color: #10b981; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.375rem; transition: all 0.3s; margin-right: 0.5rem;">
+                <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-3.146 10.843-3.146 10.843-.237.95-.87.95-1.417.588-.411-.273-2.24-1.453-2.976-1.898-.736-.445-1.382-.89-1.146-1.362.148-.295 2.24-2.598 3.652-3.988.631-.622.316-.989-.379-.367-1.743 1.556-4.596 3.592-5.156 3.965-.56.373-.875.373-1.266.248-.39-.124-1.687-.627-1.687-.627s-.622-.39.437-1.252c0 0 4.277-3.965 5.875-5.471C11.998 7.302 13.746 4.5 13.746 4.5s.316-.44.632-.294c.316.147.21.588.21.588s-.105.368-.315.735z"/>
+                </svg>
+                Telegram: @realkoreans
+              </a>
+            </p>
+            <p style="margin-top: 0.5rem;">
+              <a href="https://line.me/ti/p/U2AK4_ePYe" target="_blank" rel="noopener noreferrer" style="color: #06b6d4; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(6, 182, 212, 0.1); border-radius: 0.375rem; transition: all 0.3s;">
+                <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.629.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.348 0 .628.285.628.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                </svg>
+                LINE: @newmsg
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="location-map">
+          <iframe 
+            src="https://www.google.com/maps?q=서울시+강남구+강남대로+128길+44-8&output=embed&z=17"
+            style="width: 80%; height: 95%; min-height: 500px;"
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /* ========================================
+       DATA SECTION
+       ======================================== */
+    
+    // TRAINER DATA - Edit here to update trainer information
+    var trainersData = [
+            {
+        id: 1,
+        name: '대니/Danny',
+        age: '29/A',
+        height: '180 cm',
+        weight: '82 kg',
+        image: 'site/대니 (1).jpg',
+        gallery: [
+          'site/대니 (1).jpg',
+          'site/대니 (2).jpg',
+          'site/대니 (3).jpg',
+          'site/대니 (4).jpg',
+          ],
+        description: '180/82/29/17/A<br>남자다운 근육남 ㄷㅁ헬트 캄보디아출신 헬트 17올입니다. 한국어잘합니다<br>Muscular Cambodian Health Trainer, big 17cm vers'
+      },
+            {
+        id: 1,
+        name: '도경/Dokyung',
+        age: '22/A',
+        height: '175 cm',
+        weight: '70 kg',
+        image: 'site/도경 (1).jpg',
+        gallery: [
+          'site/도경 (1).jpg',
+          'site/도경 (2).jpg',
+          'site/도경 (3).jpg',
+          'site/도경 (4).jpg',
+          ],
+        description: '175/72/22/15/A<br>스탠 훈 sm마니아 돔 섭 가능 16 굵 올입니다<br>young handsome guy, who enjoys SM play with you. 16 thick vers'
+      },
+            {
+        id: 1,
+        name: '도성/Dosung',
+        age: '32/A',
+        height: '182 cm',
+        weight: '78 kg',
+        image: 'site/도성 (4).jpg',
+        gallery: [
+          'site/도성 (1).jpg',
+          'site/도성 (2).jpg',
+          'site/도성 (3).jpg',
+          'site/도성 (4).jpg',
+          ],
+        description: '182/78/32/16/A<br>근육질 무쌍 남자다운 16올, 탄탄한몸에 야한 마스크, 수준급마사지실력에 아찔한 터치<br>Muscular, masculine, monolid 16 vers. a toned physique, seductive look, expert-level massage skills, and an irresistible touch.'
+      },
+            {
+        id: 1,
+        name: '도훈/Dohun',
+        age: '27/A',
+        height: '170 cm',
+        weight: '62 kg',
+        image: 'site/도훈 (1).jpg',
+        gallery: [
+          'site/도훈 (1).jpg',
+          'site/도훈 (2).jpg',
+          'site/도훈 (3).jpg',
+          'site/도훈 (4).jpg',
+          ],
+        description: '170/62/27/16/A<br>슬림슬근 남자답고 귀여운 무쌍훈 16올입니다<br>a slim and toned body, cute man 16cm vers'
+      },
+            {
+        id: 1,
+        name: '동석/Dongsuk',
+        age: '30/T',
+        height: '177 cm',
+        weight: '84 kg',
+        image: 'site/동석 (2).jpg',
+        gallery: [
+          'site/동석 (1).jpg',
+          'site/동석 (2).jpg',
+          'site/동석 (3).jpg',
+          'site/동석 (4).jpg',
+          ],
+        description: '177/84/30/15/T<br>남자다운 건장체형 15탑 서비스좋은 상남자입니다!!<br>dongsuk is a beefy body with manly face,double eyelids, excellent service. He is a 15top'
+      },
+            {
+        id: 1,
+        name: '두산/DuSan',
+        age: '38/T',
+        height: '180 cm',
+        weight: '97 kg',
+        image: 'site/두산 (1).jpg',
+        gallery: [
+          'site/두산 (1).jpg',
+          'site/두산 (2).jpg',
+          'site/두산 (3).jpg',
+          'site/두산 (4).jpg',
+          ],
+        description: '180/97/38/15/T<br>남자다운 매력이 돋보이는 탄탄한 근육 베어 스타일. 강한 힘과 자신감을 갖춘, 마사지 실력까지 뛰어난 관리사. 압도적인 피지컬과 듬직한 존재감, 그리고 섹시한 매력을 겸비한 근육 베어.<br>A masculine, muscular bear-type man with a powerful, solid build. Strong, confident, and highly skilled in massage. A sexy, rugged bear with impressive strength, a commanding presence, and a warm, masculine charm.'
+      },
+            {
+        id: 1,
+        name: '마크/Mark',
+        age: '25/A',
+        height: '180 cm',
+        weight: '68 kg',
+        image: 'site/마크 (4).jpg',
+        gallery: [
+          'site/마크 (1).jpg',
+          'site/마크 (2).jpg',
+          'site/마크 (3).jpg',
+          'site/마크 (4).jpg',
+          ],
+        description: '180/68/25/18/A<br>러시아+한국 혼혈의 이국적인 분위기 한눈에 들어오는 독특하고 매력적인 얼굴 슬림하면서도 탄탄하게 잡힌 체형<br>Russian-Korean mixed  with an exotic, distinctive aura A unique and captivating face that instantly catches your eye. A slim yet well-defined, toned physique 18cm vers'
+      },
+            {
+        id: 1,
+        name: '민석/Minseok',
+        age: '33/T',
+        height: '185 cm',
+        weight: '82 kg',
+        image: 'site/민석 (3).jpg',
+        gallery: [
+          'site/민석 (1).jpg',
+          'site/민석 (2).jpg',
+          'site/민석 (3).jpg',
+          'site/민석 (4).jpg',
+          ],
+        description: '184/83/33/17/T<br>근육질, 탄탄바디 유쾌한리드(T) 처음부터 마무리까지 서비스로 승부를보는 야함. 화끈함, 테두리없는 무한 서비스 3박자를 경험해보세요!!'
+      },
+            {
+        id: 1,
+        name: '민재/Minjae',
+        age: '25/B',
+        height: '175 cm',
+        weight: '67 kg',
+        image: 'site/민재 (2).jpg',
+        gallery: [
+          'site/민재 (1).jpg',
+          'site/민재 (2).jpg',
+          'site/민재 (3).jpg',
+          'site/민재 (4).jpg',
+          ],
+        description: '175/67/25/15/B<br>순둥순둥 스탠귀염상 15바텀 마사지수준급, 서비스상입니다<br>Cute and Kind, Solid Body Massager, 15cm botoom'
+      },
+            {
+        id: 1,
+        name: '성준/Sungjun',
+        age: '28/B',
+        height: '177 cm',
+        weight: '63 kg',
+        image: 'site/성준 (2).jpg',
+        gallery: [
+          'site/성준 (1).jpg',
+          'site/성준 (2).jpg',
+          'site/성준 (3).jpg',
+          'site/성준 (4).jpg',
+          ],
+        description: '177/63/28/14/B<br>남자답고 일틱한 순수청년, 슬림탄탄한 체형에 확실한 서비스정신!!<br>A masculine, straight-acting, genuine young man with a slim and toned physique. Dedicated to providing an exceptional service experience. 14 Bottom.'
+      },
+            {
+        id: 1,
+        name: '수호/Suho',
+        age: '25/A',
+        height: '177 cm',
+        weight: '70 kg',
+        image: 'site/수호 (4).jpg',
+        gallery: [
+          'site/수호 (1).jpg',
+          'site/수호 (2).jpg',
+          'site/수호 (3).jpg',
+          'site/수호 (4).jpg',
+          ],
+        description: '177/70/25/15/A<br>잘생긴얼굴 탄탄한몸매, 수영으로 다져진 핏한몸매에 깨끗한 피부. 환상적인 오일마사지와 서비스, 아이돌같은 마스크!! 15ALL<br>handsome, fit body, trained swimmer with nice body and smooth skin! great at oil massage with nice servece!! good looking 15cm btm'
+      },
+            {
+        id: 1,
+        name: '은찬/Eunchan',
+        age: '27/B',
+        height: '171 cm',
+        weight: '65 kg',
+        image: 'site/은찬 (4).jpg',
+        gallery: [
+          'site/은찬 (1).jpg',
+          'site/은찬 (2).jpg',
+          'site/은찬 (3).jpg',
+          'site/은찬 (4).jpg',
+          'site/은찬 (5).jpg',
+          ],
+        description: '171/65/29/13/B<br>깨끗한피부, 탄탄한몸매, 순둥한성격 화끈한 서비스마인드까지!! 귀엽고 잘생긴 댕댕이!!<br>clean skin, toned body, kind good and hot service time for you :) cute and handsome twink !! 14cm bottoom'
+      },
+            {
+        id: 1,
+        name: '은호/Eunho',
+        age: '33/A',
+        height: '177 cm',
+        weight: '76 kg',
+        image: 'site/은호 (4).jpg',
+        gallery: [
+          'site/은호 (1).jpg',
+          'site/은호 (2).jpg',
+          'site/은호 (3).jpg',
+          'site/은호 (4).jpg',
+          'site/은호 (5).jpg',
+          ],
+        description: '177/76/33/15/A<br>공룡상 마스크!! 남성 보이스!! (ALL) 테크니컬한 마사지가 강점!! 일틱!! 탄탄한바디!! 경고!! 야함주의보!!<br>a manly and sturdy massageist, a kind and hot man 15cm vers'
+      },
+            {
+        id: 1,
+        name: '준우/Junwoo',
+        age: '31/T',
+        height: '172 cm',
+        weight: '70 kg',
+        image: 'site/준우 (3).jpg',
+        gallery: [
+          'site/준우 (1).jpg',
+          'site/준우 (2).jpg',
+          'site/준우 (3).jpg',
+          'site/준우 (4).jpg',
+          ],
+        description: '172/70/31/17/T<br>남자다운 찐근육!! 야하고 힘좋은 문신 17대물남!! 까무잡잡 태닝 무쌍훈남<br>manly real muscled guy!! sexuall and strong tattoed hung guy!! tanned skin with manly good looking! 17cm top'
+      },
+            {
+        id: 1,
+        name: '준혁/Junhyuk',
+        age: '28/T',
+        height: '182 cm',
+        weight: '77 kg',
+        image: 'site/준혁 (1).jpg',
+        gallery: [
+          'site/준혁 (1).jpg',
+          'site/준혁 (2).jpg',
+          'site/준혁 (3).jpg',
+          'site/준혁 (4).jpg',
+          ],
+        description: '182/77/28/15/T<br>탄탄,훈훈!! 무쌍(T) 미소년과, 상남자!! 다양한 마사지 섭렵, 스웨디시의 야함을 제대로 할줄아는.. 하루 다섯번도 가능한 에너자이저!!<br>Handsome and young muscled guy, 15cm top'
+      },
+            {
+        id: 1,
+        name: '줄리안/Julian',
+        age: '32/T',
+        height: '184 cm',
+        weight: '87 kg',
+        image: 'site/줄리안 (4).jpg',
+        gallery: [
+          'site/줄리안 (1).jpg',
+          'site/줄리안 (2).jpg',
+          'site/줄리안 (3).jpg',
+          'site/줄리안 (4).jpg',
+          ],
+        description: '184/87/32/18/T<br>서양피지컬 근육상남자 러시아인 18강탑입니다.영어만 가능합니다<br>A muscular giant man from a Russian health model, 18cm top'
+      },
+            {
+        id: 1,
+        name: '지훈/Jihoon',
+        age: '28/A',
+        height: '178 cm',
+        weight: '72 kg',
+        image: 'site/지훈 (4).jpg',
+        gallery: [
+          'site/지훈 (1).jpg',
+          'site/지훈 (2).jpg',
+          'site/지훈 (3).jpg',
+          'site/지훈 (4).jpg',
+          'site/지훈 (5).jpg',
+          'site/지훈 (6).jpg',
+          ],
+        description: '178/72/28/15A<br>남자답고 스트레잇액팅의 깔끔한 훈남 탄탄한 스탠다드 몸매, 끝내주는 서비스<br>A handsome, masculine, straight-acting guy. A fit, well-proportioned body with a solid build. Exceptional service and a great attitude.'
+      },
+            {
+        id: 1,
+        name: '태강/Taegang',
+        age: '32/A',
+        height: '182 cm',
+        weight: '82 kg',
+        image: 'site/태강 (4).jpg',
+        gallery: [
+          'site/태강 (1).jpg',
+          'site/태강 (2).jpg',
+          'site/태강 (3).jpg',
+          'site/태강 (4).jpg',
+          'site/태강 (5).jpg',
+          ],
+        description: '182/82/32/16/A<br>존잘, 근육남(ALL) 관리된 깨끗한 피부와 큰키, 잘빠진 근육질 몸매! 마사지 상, 서비스 상, 깊이있는 터치와 센스!! 기억에남는 교감 기대하세요!!<br>Handsome and manly guy, tanned skin, caring man 15cm vers top'
+      },
+            {
+        id: 1,
+        name: '태훈/Taehun',
+        age: '30/A',
+        height: '181 cm',
+        weight: '79 kg',
+        image: 'site/태훈 (4).jpg',
+        gallery: [
+          'site/태훈 (1).jpg',
+          'site/태훈 (2).jpg',
+          'site/태훈 (3).jpg',
+          'site/태훈 (4).jpg',
+          ],
+        description: '181/79/30/16/A<br>남자다운 탄탄한 근육!! 잘생긴 무쌍훈남. 정성스러운 마사지와 부드러운 서비스까지!! 15올!!<br>manly and fit muscle guy!! handsome and good looking smooth massage with gentle service!! 15cm ALL'
+      },
+            {
+        id: 1,
+        name: '헨리/Henry',
+        age: '25/A',
+        height: '180 cm',
+        weight: '77 kg',
+        image: 'site/헨리 (1).jpg',
+        gallery: [
+          'site/헨리 (1).jpg',
+          'site/헨리 (2).jpg',
+          'site/헨리 (3).jpg',
+          ],
+        description: '180/77/25/17/A<br>흰피부 , 귀여운얼굴!! 중국계(한국어 유창함) 전문 마사지사 경력 마사지, 서비스가 화려하고 특별합니다!!<br>clean and smooth skin!! cute and handsome professioanl massage therapist! hot and skilled massage session with herny!! 17cm vers'
+      },
+            {
+        id: 1,
+        name: '현준/Hyeonjun',
+        age: '29/T',
+        height: '175 cm',
+        weight: '79 kg',
+        image: 'site/현준 (1).jpg',
+        gallery: [
+          'site/현준 (1).jpg',
+          'site/현준 (2).jpg',
+          'site/현준 (3).jpg',
+          'site/현준 (4).jpg',
+          ],
+        description: '175/79/29/17/T<br>남자다운 훈근육! 잘생긴 태닝근! 17굵 강탑<br>manly and handsome, kind tanned muscle body 17cm thick pure top!!'
+      },
+            {
+        id: 4,
+        name: '혜성/Hyeseong',
+        age: '32/B',
+        height: '174 cm',
+        weight: '64 kg',
+        image: 'site/혜성 (3).jpg',
+        gallery: [
+          'site/혜성 (1).jpg',
+          'site/혜성 (2).jpg',
+          'site/혜성 (3).jpg',
+          ], 
+        description: '174/64/32/15/B<br>슬림스탠 탄탄 마사지잘하는 14바텀입니다<br>slim and manly guy who is ready to serve you, 14cm btm'
+      }, 
+            {
+        id: 1,
+        name: '흥민/Heungmin',
+        age: '25/A',
+        height: '178 cm',
+        weight: '81 kg',
+        image: 'site/흥민 (3).jpg',
+        gallery: [
+          'site/흥민 (1).jpg',
+          'site/흥민 (2).jpg',
+          'site/흥민 (3).jpg',
+          'site/흥민 (4).jpg',
+          ],
+        description: '178/81/25/A<br>남자다운얼굴 근육질바디, 특전사출신 군인 15cm 올<br>Masculine features and a muscular physique Former Special Forces soldier 15cm, versatile'
+      },
+    ];
+
+    /* ========================================
+       SLIDESHOW FUNCTIONALITY
+       ======================================== */
+    var slides = document.querySelectorAll('.slide');
+    var currentSlide = 0;
+
+    function showSlide(n) {
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
+      }
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    setInterval(nextSlide, 4000);
+
+    /* ========================================
+       NAVIGATION FUNCTIONALITY
+       ======================================== */
+    var navLinks = document.querySelectorAll('.nav-link');
+    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var mobileNav = document.getElementById('mobileNav');
+
+    function showSection(sectionId) {
+      var sections = document.querySelectorAll('section');
+      for (var i = 0; i < sections.length; i++) {
+        sections[i].classList.remove('active');
+      }
+      
+      var targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+      
+      navLinks.forEach(function(link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + sectionId) {
+          link.classList.add('active');
+        }
+      });
+      
+      if (mobileNav) {
+        mobileNav.classList.remove('active');
+      }
+      
+      window.scrollTo(0, 0);
+    }
+
+    navLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var sectionId = this.getAttribute('href').substring(1);
+        showSection(sectionId);
+        window.location.hash = sectionId;
+      });
+    });
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', function() {
+        if (mobileNav.classList.contains('active')) {
+          mobileNav.classList.remove('active');
+        } else {
+          mobileNav.classList.add('active');
+        }
+      });
+    }
+
+    /* ========================================
+       TRAINER RENDERING
+       ======================================== */
+    function renderTrainers() {
+      var container = document.getElementById('trainersGrid');
+      if (container) {
+        container.innerHTML = '';
+        
+        for (var i = 0; i < trainersData.length; i++) {
+          var trainer = trainersData[i];
+          var card = document.createElement('div');
+          card.className = 'trainer-card';
+          card.innerHTML = createMediaElement(trainer.image, trainer.name, 'trainer-image') +
+                          '<div class="trainer-info">' +
+                          '<h3 class="trainer-name">' + trainer.name + '</h3>' +
+                          '<div class="info-item"><span class="info-label">Age:</span><span class="info-value">' + trainer.age + '</span></div>' +
+                          '<div class="info-item"><span class="info-label">Height:</span><span class="info-value">' + trainer.height + '</span></div>' +
+                          '<div class="info-item"><span class="info-label">Weight:</span><span class="info-value">' + trainer.weight + '</span></div>' +
+                          '<button class="btn btn-primary view-profile-btn" data-trainer-name="' + trainer.name + '" style="width: 100%; margin-top: 1rem;">View Profile</button>' +
+                          '</div>';
+          container.appendChild(card);
+        }
+        
+        var profileButtons = container.querySelectorAll('.view-profile-btn');
+        for (var j = 0; j < profileButtons.length; j++) {
+          profileButtons[j].addEventListener('click', function() {
+            var trainerName = this.getAttribute('data-trainer-name');
+            navigateToTrainer(trainerName);
+          });
+        }
+      }
+      
+      var homeContainer = document.getElementById('homeTrainersGrid');
+      if (homeContainer) {
+        homeContainer.innerHTML = '';
+        
+        for (var i = 0; i < trainersData.length; i++) {
+          var trainer = trainersData[i];
+          var card = document.createElement('div');
+          card.className = 'trainer-card';
+          card.innerHTML = createMediaElement(trainer.image, trainer.name, 'trainer-image') +
+                          '<div class="trainer-info">' +
+                          '<h3 class="trainer-name">' + trainer.name + '</h3>' +
+                          '<div class="info-item"><span class="info-label">Age:</span><span class="info-value">' + trainer.age + '</span></div>' +
+                          '<div class="info-item"><span class="info-label">Height:</span><span class="info-value">' + trainer.height + '</span></div>' +
+                          '<div class="info-item"><span class="info-label">Weight:</span><span class="info-value">' + trainer.weight + '</span></div>' +
+                          '<button class="btn btn-primary view-profile-btn" data-trainer-name="' + trainer.name + '" style="width: 100%; margin-top: 1rem;">View Profile</button>' +
+                          '</div>';
+          homeContainer.appendChild(card);
+        }
+        
+        var homeProfileButtons = homeContainer.querySelectorAll('.view-profile-btn');
+        for (var j = 0; j < homeProfileButtons.length; j++) {
+          homeProfileButtons[j].addEventListener('click', function() {
+            var trainerName = this.getAttribute('data-trainer-name');
+            navigateToTrainer(trainerName);
+          });
+        }
+      }
+    }
+
+    /* ========================================
+       RENDER TRAINER DETAIL
+       ======================================== */
+    function renderTrainerDetail(trainerName) {
+      if (!trainerName) {
+        document.getElementById('trainerDetailContent').innerHTML = 
+          '<div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">' +
+          '<p style="color: #ef4444; font-size: 1.2rem;">Error: No trainer specified.</p>' +
+          '</div>';
+        return;
+      }
+      
+      var searchName = decodeURIComponent(trainerName);
+      
+      var trainer = null;
+      for (var i = 0; i < trainersData.length; i++) {
+        if (trainersData[i].name === searchName) {
+          trainer = trainersData[i];
+          break;
+        }
+      }
+      
+      if (!trainer) {
+        document.getElementById('trainerDetailContent').innerHTML = 
+          '<div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">' +
+          '<p style="color: #ef4444; font-size: 1.2rem;">Trainer not found.</p>' +
+          '</div>';
+        return;
+      }
+      
+      var galleryHtml = '';
+      if (trainer.gallery && trainer.gallery.length > 0) {
+        for (var i = 0; i < trainer.gallery.length; i++) {
+          galleryHtml += '<div class="gallery-item">' + 
+                        createMediaElement(trainer.gallery[i], trainer.name + ' photo ' + (i + 1), 'gallery-image') +
+                        '</div>';
+        }
+      }
+      
+      document.getElementById('trainerDetailContent').innerHTML = 
+        '<div style="max-width: 1200px; margin: 0 auto;">' +
+        '<h2 style="color: #f1f5f9; font-size: 2rem; margin-bottom: 2rem;">' + trainer.name + '</h2>' +
+        '<hr style="border: none; border-top: 1px solid #334155; margin: 2rem 0;">' +
+        
+        '<div class="trainer-description" style="margin-bottom: 2rem;">' +
+        '<h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 1rem;">About</h3>' +
+        '<p style="color: #cbd5e1; line-height: 1.8;">' + (trainer.description || 'Professional massage therapist with years of experience.') + '</p>' +
+        '</div>' +
+        
+        '<div style="margin-bottom: 2rem;">' +
+        '<div class="trainer-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">' + 
+        galleryHtml + 
+        '</div>' +
+        '</div>' +
+        
+        '<hr style="border: none; border-top: 1px solid #334155; margin: 2rem 0;">' +
+        
+        '<div>' +
+        '<h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 1rem;">Book Appointment</h3>' +
+        '<div class="booking-buttons" style="display: flex; gap: 1rem; flex-wrap: wrap;">' +
+        '<a href="https://t.me/realkoreans" target="_blank" class="btn btn-primary btn-telegram" style="min-width: 250px; text-align: center; text-decoration: none;">Book via Telegram</a>' +
+        '<a href="https://line.me/ti/p/U2AK4_ePYe" target="_blank" class="btn btn-primary btn-line" style="min-width: 250px; text-align: center; text-decoration: none;">Book via LINE</a>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    }
+
+    /* ========================================
+       URL HASH HANDLING
+       ======================================== */
+    function navigateToTrainer(trainerName) {
+      window.location.hash = 'trainer-' + encodeURIComponent(trainerName);
+    }
+
+    function handleHashChange() {
+      var hash = window.location.hash.substring(1);
+      
+if (hash.startsWith('trainer-')) {
+  var trainerName = hash.replace('trainer-', '');
+
+  try {
+    trainerName = decodeURIComponent(trainerName);
+  } catch (e) {}
+
+  if (trainerName) {
+    showSection('trainer-detail');
+    renderTrainerDetail(trainerName);
+    return;
+  }
+}
+      
+      if (hash && document.getElementById(hash)) {
+        showSection(hash);
+      } else if (!hash) {
+        showSection('home');
+      }
+    }
+
+    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('load', function() {
+      renderTrainers();
+      handleHashChange();
+    });
+
+    /* ========================================
+       HELPER FUNCTION - Check if file is video
+       ======================================== */
+    function isVideoFile(url) {
+      var videoExtensions = ['.mp4', '.webm', '.mov', '.avi', '.mkv', '.m4v'];
+      var lowerUrl = url.toLowerCase();
+      // Remove query parameters before checking extension
+      var urlWithoutQuery = lowerUrl.split('?')[0];
+      for (var i = 0; i < videoExtensions.length; i++) {
+        if (urlWithoutQuery.endsWith(videoExtensions[i])) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    /* ========================================
+       HELPER: CREATE MEDIA ELEMENT (IMAGE OR VIDEO)
+       video 업로드 시 H264로 변환 필수
+       ======================================== */
+
+    function createMediaElement(src, alt, className) {
+      if (isVideoFile(src)) {
+        var videoSrc = src;
+        if (src.indexOf('#t=') === -1) {
+          videoSrc = src + '#t=0.1';
+        }
+        var videoId = 'video_' + Math.random().toString(36).substr(2, 9);
+        var videoHtml = '<video id="' + videoId + '" src="' + videoSrc + '" class="' + className + '" ' +
+               'controls ' +
+               'controlsList="nodownload nofullscreen noremoteplayback" ' +
+               'disablePictureInPicture ' +
+               'playsinline ' +
+               'preload="auto" ' +  // metadata    auto    중 하나 사용
+               'muted ' +
+               'webkit-playsinline ' +
+               'poster="' + src.split('?')[0].split('#')[0] + '#t=0.1" ' +
+               'style="width: 100%; object-fit: cover;"></video>';
+        
+        // Initialize video after DOM update
+        setTimeout(function() {
+          var videoElement = document.getElementById(videoId);
+          if (videoElement) {
+            // Force reload if video fails to load
+            videoElement.addEventListener('error', function() {
+              console.log('[v0] Video error, attempting reload:', src);
+              this.load();
+            });
+            
+            // Ensure video is ready
+            videoElement.addEventListener('loadedmetadata', function() {
+              console.log('[v0] Video metadata loaded:', src);
+            });
+            
+            // Handle stalled video
+            videoElement.addEventListener('stalled', function() {
+              console.log('[v0] Video stalled, reloading:', src);
+              this.load();
+            });
+            
+            // Force initial load
+            videoElement.load();
+          }
+        }, 100);
+        
+        return videoHtml;
+      } else {
+        return '<img src="' + src + '" alt="' + alt + '" class="' + className + '">';
+      }
+    }
+  </script>
+
+  <footer style="background-color: #1a1f2e; padding: 20px; text-align: center; border-top: 1px solid #2d3748;">
+    <p style="color: #94a3b8; margin: 0; font-size: 14px;">© 2025 REAL MAN. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
