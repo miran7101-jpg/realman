@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Massage Shop</title>
+
+  <style>
+    /* ------------------------------ */
+    /* 기본 스타일 (globals.css 일부 반영) */
+    /* ------------------------------ */
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #000;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      margin-left: 20px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    /* 모바일 메뉴 */
+    .mobile-toggle {
+      display: none;
+      cursor: pointer;
+      color: #fff;
+      font-size: 24px;
+    }
+
+    @media(max-width: 768px){
+      nav {
+        display: none;
+      }
+      .mobile-toggle {
+        display: block;
+      }
+    }
+
+    /* ------------------------------ */
+    /* Hero 슬라이드(이미지는 네가 채움) */
+    /* ------------------------------ */
+
+    .hero {
+      height: 70vh;
+      background: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 32px;
+      padding: 20px;
+    }
+
+    /* ------------------------------ */
+    /* 섹션 스타일 */
+    /* ------------------------------ */
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    /* ------------------------------ */
+    /* Footer */
+    /* ------------------------------ */
+    footer {
+      background: #000;
+      padding: 40px;
+      text-align: center;
+      color: #aaa;
+      margin-top: 60px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ------------------------------ -->
+  <!-- Navigation -->
+  <!-- ------------------------------ -->
+
+  <header>
+    <div class="logo">MASSAGE SHOP</div>
+
+    <div class="mobile-toggle">☰</div>
+
+    <nav>
+      <a href="#">HOME</a>
+      <a href="#">PROGRAM</a>
+      <a href="#">TRAINERS</a>
+      <a href="#">LOCATION</a>
+    </nav>
+  </header>
+
+  <!-- ------------------------------ -->
+  <!-- Hero 이미지 (여기 직접 이미지 넣어!) -->
+  <!-- ------------------------------ -->
+
+  <div class="hero">
+    <!-- ↓ 네가 이미지로 바꾸면 됨 -->
+    MAIN HERO IMAGE AREA  
+  </div>
+
+  <!-- ------------------------------ -->
+  <!-- Sections -->
+  <!-- ------------------------------ -->
+
+  <div class="section">
+    <h2>Premium Massage Spa</h2>
+    <p>Experience deep relaxation and premium body care tailored just for you.</p>
+  </div>
+
+  <div class="section">
+    <h2>Our Programs</h2>
+    <!-- 네가 이미지 넣어서 카드형으로 꾸며도 됨 -->
+    <p>Body care, Aroma therapy, Special deep tissue massage and more.</p>
+  </div>
+
+  <div class="section">
+    <h2>Our Trainers</h2>
+    <p>Professional and certified massage therapists.</p>
+  </div>
+
+  <div class="section">
+    <h2>Location</h2>
+    <p>Your shop address or map image here.</p>
+  </div>
+
+  <!-- ------------------------------ -->
+  <!-- Footer -->
+  <!-- ------------------------------ -->
+
+  <footer>
+    © 2025 Massage Shop. All rights reserved.
+  </footer>
+
+</body>
+</html>
